@@ -1,0 +1,65 @@
+{% extends 'store/user/main.html' %}
+{% load static %}
+{% block content %}
+<div class="breadcrumb">
+    <div class="container">
+        <a class="breadcrumb-item" href="{% url 'store' %}">Home</a>
+        <span class="breadcrumb-item active">Terms and Condition</span>
+    </div>
+</div>
+<section class="product-sec">
+    <div class="container">
+        <h1>{{product.name}}</h1>
+        <div class="row">
+            <div class="col-md-6 slider-sec">
+                <!-- main slider carousel -->
+                <div id="myCarousel" class="carousel slide">
+                    <!-- main slider carousel items -->
+                    <div class="carousel-inner">
+                        <div class="active item carousel-item" data-slide-number="0">
+                            <img src="{{product.imageURL}}" class="img-fluid">
+                        </div>
+                        {% for productimage in productimages %}
+                        <div class="item carousel-item" data-slide-number="{{productimage.id}}">
+                            <img src="{{productimage.productImageURL}}" class="img-fluid">
+                        </div>
+                        {% endfor %}
+                        
+                    </div>
+                    <!-- main slider carousel nav controls -->
+                    <ul class="carousel-indicators list-inline">
+                        <li class="list-inline-item active">
+                            <a id="carousel-selector-0" class="selected" data-slide-to="0" data-target="#myCarousel">
+                            <img src="{{product.imageURL}}" class="img-fluid">
+                        </a>
+                        </li>
+                        {% for productimage in productimages %}
+                        <li class="list-inline-item">
+                            <a id="carousel-selector-1" data-slide-to="2" data-target="#myCarousel">
+                            <img src="{{productimage.productImageURL}}" class="img-fluid">
+                        </a>
+                        </li>
+                        {% endfor %}
+                      
+                    </ul>
+                </div>
+                <!--/main slider carousel-->
+            </div>
+            <div class="col-md-6 slider-content">
+                <p>{{product.detail}}</p>
+                <ul>
+                    <li>
+                        <span class="name"> Price</span><span class="clm">:</span>
+                        <span class="price final">${{product.price|floatformat:2}}</span>
+                    </li>
+                    
+                </ul>
+                <div class="btn-sec">
+                    <a href=""data-product="{{product.id}}" data-action="add" class="update-cart"><button class="btn ">Add To cart</button></a>
+                    <button class="btn black">Buy Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

@@ -1,0 +1,21 @@
+{% extends 'store/user/main.html' %}
+{% load static %}
+{% block content %}
+<h2>recently added books to our store</h2>
+<div class="recent-book-sec">
+    <div class="row">
+        {% for product in products %}
+        <div class="col-md-3">
+            <div class="item">
+                <img src="{{product.imageURL}}" alt="img">
+                <h3><a href="{% url 'product_single' product.id %}">{{product.name}}</a></h3>
+                <h6><span class="price">${{product.price}}</span> / <a href="#"data-product="{{product.id}}" data-action="add" class="update-cart">Add to cart</a></h6>
+            </div>
+        </div> 
+        {% endfor %}
+    </div>
+    <div class="btn-sec">
+        <a href="{% url 'shopproduct' %}" class="btn gray-btn">load More books</a>
+    </div>
+</div>
+{% endblock content %}

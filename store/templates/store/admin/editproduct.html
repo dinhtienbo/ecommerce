@@ -1,0 +1,64 @@
+{% extends 'store/admin/main.html' %}
+{% load static %}
+{% block content %}
+<main>
+    <div class="container-fluid">
+        <h1 class="mt-4">Dashboard</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item active">Dashboard</li>
+        </ol>
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-table mr-1"></i>
+                Sửa sản phẩm {{product.name}}
+            </div>
+            <div class="card-body">
+
+                <!-- Nếu cần phải upload file thì form bắt buộc phải có enctype="multipart/form-data" -->
+                <form action="" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <hidden path="id"/>
+
+                    <div class="form-group">
+                        <label>Title</label>
+                        <input type="text" name="Title" class="form-control" value="{{product.title}}" />
+                        <small id="emailHelp" class="form-text text-muted">
+                            Tối đa 15 kí tự.
+                        </small>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" name="Name" class="form-control" value="{{product.name}}" />
+                        <small id="emailHelp" class="form-text text-muted">
+
+                        </small>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Giá bán</label>
+                        <input type="text" class="form-control"  name="Price" value="{{product.price}}" />
+                        <small id="emailHelp"  class="form-text text-muted">
+                            Đơn vị tính là USD.
+                        </small>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label>Details description</label>
+                        <textarea id="txtDetailDescription" class="form-control"  name="Detail" value="{{product.detail}}" >{{product.detail}}</textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Images</label>
+                        <input type="file" name="Image" class="form-control" value="{{product.imageURL}}">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Sửa</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock content %}
